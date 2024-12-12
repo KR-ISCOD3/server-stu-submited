@@ -6,11 +6,17 @@ const router = require('./routes/dataroutes.js');
 
 config();
 
+const corsOptions = {
+    origin: 'https://form-submit-project.vercel.app/', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // Allow cookies and credentials if needed
+  };
+  
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 connectdb();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(router);
 
