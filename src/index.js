@@ -7,7 +7,7 @@ const router = require('./routes/dataroutes.js');
 config();
 
 const corsOptions = {
-    origin: 'https://form-submit-project.vercel.app/', // Replace with your frontend URL
+    origin: ['https://form-submit-project.vercel.app/','https://etec-submit-project-form.netlify.app'], // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // Allow cookies and credentials if needed
   };
