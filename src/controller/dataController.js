@@ -18,7 +18,7 @@ const post_data = async (req, res) => {
         .status(400)
         .send({ message: "Please provide all required fields" });
     }
-    
+
     const newData = new Students({
       name,
       tel,
@@ -38,33 +38,48 @@ const post_data = async (req, res) => {
   }
 };
 
-
 const delete_data = async (req, res) => {
-    try {
-      const id = req.params.id;
-  
-      if (!id) {
-        return res
-          .status(400)
-          .send({ message: "Please provide the ID of the data to delete" });
-      }
-  
-      const deletedData = await Students.findByIdAndDelete(id);
-  
-      if (!deletedData) {
-        return res
-          .status(404)
-          .send({ message: "Data not found with the provided ID" });
-      }
-  
-      res.status(200).send({ message: "Data deleted successfully" });
-    } catch (e) {
-      console.error(e);
-      res.status(500).send({ message: "Internal Server Error" });
+  try {
+    const id = req.params.id;
+
+    if (!id) {
+      return res
+        .status(400)
+        .send({ message: "Please provide the ID of the data to delete" });
     }
-  };
+
+    const deletedData = await Students.findByIdAndDelete(id);
+
+    if (!deletedData) {
+      return res
+        .status(404)
+        .send({ message: "Data not found with the provided ID" });
+    }
+
+    res.status(200).send({ message: "Data deleted successfully" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+};
+
+const get_all_data = async (req, res) => {
+  try {
+    const allData = await Students.find().sort({ _id: -1 });
+
+    if (!allData) {
+      return res.status(404).send({ message: "No data found" });
+    }
+
+    res.status(200).send(allData);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+};
 
 module.exports = {
   post_data,
-  delete_data
+  delete_data,
+  get_all_data
 };
