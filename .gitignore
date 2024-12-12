@@ -1,0 +1,14 @@
+node_modules/
+package-lock.json
+.env
+logs/
+coverage/
+dist/
+build/
+*.log
+*.tmp
+*.pid
+*.seed
+*.env.*
+*.vscode/
+.DS_Store
