@@ -8,7 +8,7 @@ config();
 
 const corsOptions = {
   origin: [
-    "https://form-submit-project.vercel.app",
+    "https://form-submit-seven.vercel.app",
     "https://etec-submit-project-form.netlify.app",
   ], // Replace with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
